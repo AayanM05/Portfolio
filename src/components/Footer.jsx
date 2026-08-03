@@ -80,8 +80,8 @@ export default function Footer() {
                 <div className="inline-flex items-start gap-2">
                   <MapPin size={14} className="shrink-0 mt-0.5" />
                   <div>
-                    <span className="block text-[13px] leading-snug whitespace-nowrap">
-                      Pune, Maharashtra, India
+                    <span className="block text-[13px] leading-snug md:whitespace-nowrap">
+                      Pune,<br className="md:hidden" /> Maharashtra, India
                     </span>
                     <span className="text-ink-soft/60 dark:text-void-soft/50 block text-[11px] mt-1 tag-mono uppercase">
                       Ready to Relocate
