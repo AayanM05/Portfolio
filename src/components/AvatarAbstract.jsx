@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
 
-/**
- * Placeholder portrait — an abstract, detection-frame-themed silhouette
- * rather than a stock photo of a stranger. Swap this out for a real photo
- * by dropping a file at /public/avatar.jpg and replacing this component's
- * usage with a plain <img src="/avatar.jpg" /> inside the same wrapper.
- */
 export default function AvatarAbstract({ className = "" }) {
   return (
     <div 
@@ -16,30 +10,15 @@ export default function AvatarAbstract({ className = "" }) {
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full h-full border border-line dark:border-void-line bg-ink dark:bg-void-ink/95 overflow-hidden"
+        className="relative w-full h-full border border-line dark:border-void-line bg-paper-hero dark:bg-void-ink/10 overflow-hidden group shadow-lg"
       >
-        <svg viewBox="0 0 300 375" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <linearGradient id="avatar-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0052CC" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#0052CC" stopOpacity="0.05" />
-            </linearGradient>
-          </defs>
-          <rect width="300" height="375" fill="url(#avatar-grad)" />
-          {/* Low-poly silhouette */}
-          <path
-            d="M150 90 L195 130 L190 210 L215 260 L200 330 L100 330 L85 260 L110 210 L105 130 Z"
-            fill="none"
-            stroke="#F3F3EE"
-            strokeOpacity="0.5"
-            strokeWidth="1.5"
-          />
-          <circle cx="150" cy="110" r="42" fill="none" stroke="#F3F3EE" strokeOpacity="0.5" strokeWidth="1.5" />
-          <line x1="0" y1="130" x2="300" y2="130" stroke="#F3F3EE" strokeOpacity="0.08" />
-          <line x1="0" y1="230" x2="300" y2="230" stroke="#F3F3EE" strokeOpacity="0.08" />
-        </svg>
+        <img
+          src="/profile.png"
+          alt="Aayan Mulla"
+          className="w-full h-full object-cover object-center filter grayscale contrast-[1.05] brightness-95 group-hover:grayscale-0 transition-all duration-500"
+        />
 
-        <span className="absolute top-4 left-4 tag-mono text-accent font-mono font-medium">
+        <span className="absolute top-4 left-4 tag-mono text-accent dark:text-accent-dark font-mono font-medium px-2 py-0.5 bg-paper/80 dark:bg-void/80 backdrop-blur-sm border border-line/30 dark:border-void-line/40 text-[10px]">
           {`{ CLASS: DEVELOPER }`}
         </span>
       </motion.div>
