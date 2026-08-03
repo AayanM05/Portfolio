@@ -12,11 +12,14 @@ export default function AvatarAbstract({ className = "" }) {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full h-full"
       >
-        {/* Structural offset backplate */}
-        <div className="absolute inset-0 border border-line/60 dark:border-void-line/80 pointer-events-none z-0 translate-x-3 translate-y-3" />
+        {/* Soft Ambient Background Glow Halo */}
+        <div className="absolute -inset-5 rounded-3xl bg-gradient-to-tr from-accent/25 via-accent/10 to-transparent dark:from-accent-dark/35 dark:via-accent-dark/15 blur-2xl opacity-85 pointer-events-none z-0" />
+
+        {/* Structural Accent Backplate */}
+        <div className="absolute inset-0 border border-accent/40 dark:border-accent-dark/50 bg-accent/5 dark:bg-accent-dark/10 pointer-events-none z-0 translate-x-3.5 translate-y-3.5 shadow-md" />
 
         {/* Main Image Container */}
-        <div className="relative w-full h-full border border-line dark:border-void-line bg-paper-hero dark:bg-void-ink/5 overflow-hidden group shadow-xl z-10">
+        <div className="relative w-full h-full border border-line/80 dark:border-void-line bg-paper-hero dark:bg-void-ink/5 overflow-hidden group shadow-[0_24px_50px_rgba(0,0,0,0.18)] dark:shadow-[0_28px_65px_rgba(0,0,0,0.95)] z-10">
           <img
             src="/profile.png"
             alt="Aayan Mulla"
