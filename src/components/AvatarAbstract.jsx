@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function AvatarAbstract({ className = "" }) {
   return (
     <div 
-      className={`aspect-[4/5] w-full max-w-[280px] sm:max-w-sm mx-auto md:-translate-y-6 md:translate-x-5 ${className}`}
+      className={`aspect-[4/5] w-full max-w-[280px] sm:max-w-sm mx-auto translate-y-[13px] md:-translate-y-[11px] md:translate-x-5 ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
@@ -31,8 +31,8 @@ export default function AvatarAbstract({ className = "" }) {
           {/* Bottom subtle gradient vignette */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/50 via-transparent to-black/10 opacity-70 group-hover:opacity-30 transition-opacity duration-500" />
 
-          {/* Developer Tag (No Background) */}
-          <span className="absolute top-4 left-4 tag-mono text-accent dark:text-accent-dark font-mono font-bold text-[10.5px] tracking-wider z-20 drop-shadow-md">
+          {/* Developer Tag (Bottom Right, No Background) */}
+          <span className="absolute bottom-4 right-4 tag-mono text-accent dark:text-accent-dark font-mono font-bold text-[10.5px] tracking-wider z-20 drop-shadow-md">
             {`{ CLASS: DEVELOPER }`}
           </span>
         </div>
