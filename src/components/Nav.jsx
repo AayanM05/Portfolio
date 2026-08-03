@@ -80,26 +80,26 @@ export default function Nav() {
                   to={item.to}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `tag-mono text-base tracking-wider transition-colors flex items-center justify-between py-2 border-b border-line/20 dark:border-void-line/20 ${
+                    `tag-mono text-base tracking-wider transition-colors flex items-center justify-between py-3 border-b border-line/30 dark:border-void-line/50 ${
                       isActive
                         ? "text-accent dark:text-accent-dark font-bold"
-                        : "text-ink dark:text-void hover:text-accent dark:hover:text-accent-dark"
+                        : "text-ink dark:text-void-ink font-semibold hover:text-accent dark:hover:text-accent-dark"
                     }`
                   }
                 >
                   <span>{item.label}</span>
-                  <span className="text-xs text-ink-soft/40 dark:text-void-soft/40 font-mono">
+                  <span className="text-xs text-ink-soft/60 dark:text-void-ink/50 font-mono">
                     0{idx + 1}
                   </span>
                 </NavLink>
               ))}
             </div>
 
-            <div className="pt-6 border-t border-line/30 dark:border-void-line/30 flex flex-col gap-1.5">
-              <span className="tag-mono text-xs text-accent dark:text-accent-dark font-bold">
+            <div className="pt-6 border-t border-line/30 dark:border-void-line/50 flex flex-col gap-1.5">
+              <span className="tag-mono text-xs text-accent dark:text-accent-dark font-bold uppercase tracking-wider">
                 {profile.name}
               </span>
-              <span className="text-xs text-ink-soft dark:text-void-soft font-mono">
+              <span className="text-xs text-ink dark:text-void-ink font-medium tracking-wide">
                 Pune, Maharashtra, India
               </span>
             </div>
