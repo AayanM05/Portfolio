@@ -37,7 +37,7 @@ export default function Home() {
         <AbstractField variant="hero" />
 
         {/* Hero */}
-        <section className="relative pt-[156px] pb-12 md:pt-40 md:pb-16 px-6 md:px-10 translate-y-[2px]">
+        <section className="relative pt-[178px] pb-12 md:pt-40 md:pb-16 px-6 md:px-10 translate-y-[2px]">
           <div className="max-w-container mx-auto relative grid md:grid-cols-[1.3fr_1fr] gap-14 items-center">
             <div>
               <motion.div
@@ -47,7 +47,7 @@ export default function Home() {
               >
                 <DetectionFrame tag="CLASS: DEVELOPER" always>
                   <h1
-                    className="font-display font-bold text-[6.8rem] sm:text-hero leading-[1.05] sm:leading-none md:leading-[1.02] mt-4 flex flex-col"
+                    className="font-display font-bold text-[calc(6.8rem+11px)] sm:text-hero leading-[1.05] sm:leading-none md:leading-[1.02] mt-4 flex flex-col"
                     style={{ letterSpacing: "0.017em" }}
                   >
                     <span>AAYAN</span>
