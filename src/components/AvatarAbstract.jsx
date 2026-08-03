@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 export default function AvatarAbstract({ className = "" }) {
   return (
     <div 
-      style={{ position: "relative", top: "-27px", left: "22px" }}
-      className={`aspect-[4/5] w-full max-w-sm mx-auto ${className}`}
+      className={`aspect-[4/5] w-full max-w-[280px] sm:max-w-sm mx-auto md:-translate-y-6 md:translate-x-5 ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}

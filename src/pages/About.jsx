@@ -75,7 +75,7 @@ export default function About() {
               </motion.div>
             </div>
 
-            <AvatarAbstract className="hidden md:block" />
+            <AvatarAbstract className="mt-12 md:mt-0" />
           </div>
         </section>
       </div>
