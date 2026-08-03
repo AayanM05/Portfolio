@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TERMINAL_SYSTEMS // CORE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#c6c6c7",
+                    "primary-container": "#00ff00",
+                    "on-primary-fixed-variant": "#015300",
+                    "error": "#ffb4ab",
+                    "on-surface": "#e2e2e2",
+                    "surface-bright": "#393939",
+                    "inverse-surface": "#e2e2e2",
+                    "outline": "#84967c",
+                    "surface-container-highest": "#353535",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-tertiary-container": "#606060",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#026e00",
+                    "on-background": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#454747",
+                    "tertiary-fixed-dim": "#c7c6c6",
+                    "on-primary-container": "#027100",
+                    "surface-container-low": "#1b1b1b",
+                    "on-primary": "#013a00",
+                    "surface": "#131313",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-tint": "#02e600",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary-fixed-dim": "#02e600",
+                    "surface-container-high": "#2a2a2a",
+                    "primary-fixed": "#77ff61",
+                    "inverse-on-surface": "#303030",
+                    "surface-dim": "#131313",
+                    "tertiary-fixed": "#e4e2e2",
+                    "outline-variant": "#3b4b35",
+                    "on-primary-fixed": "#002200",
+                    "background": "#131313",
+                    "primary": "#eaffde",
+                    "on-secondary-container": "#b4b5b5",
+                    "on-secondary": "#2f3131",
+                    "on-tertiary": "#303031",
+                    "secondary-container": "#454747",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "tertiary": "#faf8f8",
+                    "surface-variant": "#353535",
+                    "surface-container": "#1f1f1f",
+                    "tertiary-container": "#dddcdc",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "on-surface-variant": "#b9ccaf",
+                    "surface-container-lowest": "#0e0e0e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "section-gap": "160px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-caps": ["JetBrains Mono"],
+                    "display-lg": ["Anton"],
+                    "code-sm": ["JetBrains Mono"],
+                    "display-2xl": ["Anton"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Anton"],
+                    "headline-md": ["Anton"],
+                    "display-xl": ["Anton"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "display-lg": ["80px", {"lineHeight": "80px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "code-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-2xl": ["160px", {"lineHeight": "140px", "letterSpacing": "-0.04em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "48px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "display-xl": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>body {
+    background-color: #000;
+    color: #e2e2e2;
+    overflow-x: hidden
+    }
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA3VW2RjONvGFaF1ghxFbXozZO5Sh6-Y7xHS7crpeH-K9ZNyBwTESv2W3vzxWgJSKlOXN2SDkpASZNtLJfUQZNE2vWW7BB3EpE6UGOCnO7EEI5-RU1kiQiWobFC6eHiAwVI709Gxq9r62ePJqBHE_SC1uaXA5k_UzWMTeKz_YKpkMin83CWPi-xl9-zYDfRE8hTt9UsPu8Mcira-W9mJBveYDbwoZh8gGvrpknE-hJsNWMdCdMW36neIeNFnDEfIl8CT5Q4W6ab-4s);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999
+    }
+.geometric-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: -1
+    }
+.frosted-steel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1)
+    }
+.outline-text {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    color: transparent
+    }
+.ticker-scroll {
+    animation: ticker 30s linear infinite
+    }
+@keyframes ticker {
+    0% {
+        transform: translateX(0);
+        } 100% {
+        transform: translateX(-50%);
+        }
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md antialiased">
+<div class="grain-overlay"></div>
+<div class="geometric-grid"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-2xl border-b border-white/10">
+<div class="flex justify-between items-center px-gutter py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="terminal">terminal</span>
+<h1 class="font-display-xl text-headline-md tracking-tighter text-on-surface">DEV/CORE</h1>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-code-sm text-primary-fixed-dim font-bold uppercase tracking-widest hover:text-primary-fixed-dim transition-colors duration-300" href="#vault">VAULT</a>
+<a class="font-code-sm text-secondary uppercase tracking-widest hover:text-primary-fixed-dim transition-colors duration-300" href="#stack">STACK</a>
+<a class="font-code-sm text-secondary uppercase tracking-widest hover:text-primary-fixed-dim transition-colors duration-300" href="#process">PROCESS</a>
+<button class="bg-primary-container text-on-primary font-code-sm px-6 py-2 uppercase tracking-tighter font-bold">CONNECT</button>
+</nav>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter">
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col md:flex-row items-center pt-24 gap-12">
+<div class="w-full md:w-1/2">
+<h2 class="font-display-2xl text-display-2xl-mobile md:text-display-2xl text-white uppercase leading-none mb-8">
+                    ARCHITECTING<br/>
+<span class="text-primary-fixed-dim">DIGITAL</span><br/>
+                    ECOSYSTEMS
+                </h2>
+<div class="flex gap-4 items-center">
+<span class="w-12 h-[1px] bg-primary-fixed-dim"></span>
+<p class="font-code-sm text-secondary tracking-widest uppercase">Protocol: High-Performance Architecture</p>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-[600px] relative overflow-hidden border border-white/10 frosted-steel">
+<img alt="Abstract Tech Sculpture" class="w-full h-full object-cover grayscale opacity-80" data-alt="A high-contrast, monochromatic 3D abstract digital sculpture representing complex network infrastructure. The image features sharp geometric wires and floating dark metallic fragments against a deep black background, illuminated by a single harsh side light that highlights structural details and creates deep shadows. The overall aesthetic is industrial, technical, and premium, perfectly matching a luxury developer brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH1vuHjnIeLBiur0hjXGrOzXA5J_okMKA7Wl6HA6HVCwB-Ps94EuYQDP4HHRaQbmIh4FmRfcMhiWgqp1kU166yMvI6FDZVqmMYM0mpRVJAP7eZAZabMi5udVefWWdFvYhRboF9zDgGYt3MDq17raLu83048sUL-hj5-JKRDzusegKC8UV3ZRi1Fbc0fLkDa32F2p5PW6yT9GkakNzDx4wzpwFg47DzuWsUJwaKA-2Ec9zF2xEsDcxCdZvLAZGB6g-3i8aZoU_7m-I"/>
+</div>
+</section>
+<!-- Stats Ticker -->
+<section class="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-white/5 border-y border-white/10 py-6 overflow-hidden">
+<div class="flex whitespace-nowrap ticker-scroll">
+<div class="flex gap-24 items-center px-12">
+<span class="font-code-sm text-primary-fixed-dim">[COMMITS: 2.4k+]</span>
+<span class="font-code-sm text-white">[UPTIME: 99.9%]</span>
+<span class="font-code-sm text-primary-fixed-dim">[PROJECTS: 12]</span>
+<span class="font-code-sm text-white">[COFFEE: ∞]</span>
+<span class="font-code-sm text-primary-fixed-dim">[COMMITS: 2.4k+]</span>
+<span class="font-code-sm text-white">[UPTIME: 99.9%]</span>
+<span class="font-code-sm text-primary-fixed-dim">[PROJECTS: 12]</span>
+<span class="font-code-sm text-white">[COFFEE: ∞]</span>
+</div>
+<div class="flex gap-24 items-center px-12">
+<span class="font-code-sm text-primary-fixed-dim">[COMMITS: 2.4k+]</span>
+<span class="font-code-sm text-white">[UPTIME: 99.9%]</span>
+<span class="font-code-sm text-primary-fixed-dim">[PROJECTS: 12]</span>
+<span class="font-code-sm text-white">[COFFEE: ∞]</span>
+<span class="font-code-sm text-primary-fixed-dim">[COMMITS: 2.4k+]</span>
+<span class="font-code-sm text-white">[UPTIME: 99.9%]</span>
+<span class="font-code-sm text-primary-fixed-dim">[PROJECTS: 12]</span>
+<span class="font-code-sm text-white">[COFFEE: ∞]</span>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-section-gap grid grid-cols-1 md:grid-cols-12 gap-12 items-start" id="about">
+<div class="md:col-span-8">
+<h2 class="font-display-xl text-display-xl-mobile md:text-display-xl outline-text uppercase leading-none mb-12">
+                    THE_PHILOSOPHY
+                </h2>
+<div class="max-w-2xl">
+<p class="font-body-lg text-white mb-8">
+                        Engineering isn't just about syntax; it's about the orchestration of logic to withstand the entropy of the digital age. I build scalable, bulletproof systems that balance raw performance with elegant developer experience.
+                    </p>
+<p class="font-body-md text-secondary leading-relaxed">
+                        Every line of code is a structural beam. Every database query is a foundation. My approach combines rigorous academic principles with the speed and agility required for modern, high-stakes technical environments. We aren't just writing scripts; we are designing the future of digital interaction.
+                    </p>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-8 pt-12">
+<div class="p-8 border border-white/10 frosted-steel">
+<p class="font-code-sm text-primary-fixed-dim mb-2">// 01_DURABILITY</p>
+<p class="font-body-md text-on-surface">Systems built to scale from 1 to 1M users without architectural degradation.</p>
+</div>
+<div class="p-8 border border-white/10 frosted-steel">
+<p class="font-code-sm text-primary-fixed-dim mb-2">// 02_PRECISION</p>
+<p class="font-body-md text-on-surface">Sub-millisecond latency and surgical optimization of the visual shell.</p>
+</div>
+</div>
+</section>
+<!-- Project Vault (Bento Grid) -->
+<section class="py-section-gap" id="vault">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-16 tracking-tighter">PROJECT_VAULT</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[1000px]">
+<!-- Featured Card -->
+<div class="md:col-span-2 md:row-span-2 border border-white/10 frosted-steel p-8 flex flex-col justify-between group overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<div>
+<span class="font-code-sm bg-primary-container text-on-primary px-3 py-1 mb-4 inline-block">FINTECH_CORE</span>
+<h3 class="font-headline-md text-white uppercase mt-4">SeizeDeals</h3>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary-fixed-dim" data-icon="payments">payments</span>
+</div>
+<p class="font-body-md text-secondary max-w-sm">Complex payment workflow visualizer with real-time transaction reconciliation and high-throughput ledger systems.</p>
+</div>
+<div class="relative h-64 border border-white/20 mt-8 mb-8 overflow-hidden bg-surface-container-low">
+<img alt="SeizeDeals Preview" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" data-alt="A detailed, technical visualization of a financial dashboard featuring glowing neon green data charts and dark UI components. The screen displays complex transactional flow diagrams and crypto-currency nodes connected by thin white lines. The environment is dark with a subtle green ambient glow, reflecting a high-end fintech engineering aesthetic with sharp, crisp data points." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqrtV6zhNEudPsfQmw4GvojlXgR47YpaIy-sNGbxoSTj-wfYSfwQundxMLRm-GfAXKqAF8xHZqLH4wfWAZ1je1Ylr4PEupvk049CCoMKu6sEQwGr9ViNxwTdKVVJ_POhAlsEu2afvfxXeMmRIk0ykoaHrQuTm-aA5739Ua2PngvChYRDq302hUE9so2ve_1iIb-0-zE2_hlv677bYgGDwJ-OEHFzUQgMS8W_USr4pfkGRm9MaDI67RifFHlgPG8RAmqSfJBcS0Vg"/>
+</div>
+<button class="w-fit flex items-center gap-2 font-code-sm text-primary-fixed-dim hover:gap-4 transition-all">
+                        VIEW_INTEL <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Card 2 -->
+<div class="md:col-span-2 border border-white/10 frosted-steel p-8 flex flex-col justify-between">
+<div class="flex justify-between">
+<div>
+<span class="font-code-sm border border-white/30 text-white px-3 py-1 mb-4 inline-block">SYSTEM_INFRA</span>
+<h3 class="font-headline-md text-white uppercase mt-2">NEBULA_OS</h3>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="cloud">cloud</span>
+</div>
+<button class="w-fit flex items-center gap-2 font-code-sm text-primary-fixed-dim">VIEW_INTEL</button>
+</div>
+<!-- Card 3 -->
+<div class="md:col-span-1 border border-white/10 frosted-steel p-8 flex flex-col justify-between">
+<div>
+<span class="font-code-sm text-secondary mb-2 block uppercase">Mobile_Shell</span>
+<h3 class="font-headline-md text-white uppercase">Vanguard_App</h3>
+</div>
+<span class="material-symbols-outlined text-3xl text-primary-fixed-dim" data-icon="smartphone">smartphone</span>
+</div>
+<!-- Card 4 -->
+<div class="md:col-span-1 border border-white/10 frosted-steel p-8 flex flex-col justify-between bg-primary-container/5">
+<div>
+<span class="font-code-sm text-secondary mb-2 block uppercase">Logic_Layer</span>
+<h3 class="font-headline-md text-white uppercase">Titan_API</h3>
+</div>
+<span class="material-symbols-outlined text-3xl text-primary-fixed-dim" data-icon="api">api</span>
+</div>
+</div>
+</section>
+<!-- Technical Stack -->
+<section class="py-section-gap" id="stack">
+<div class="mb-16">
+<p class="font-code-sm text-primary-fixed-dim mb-4 tracking-[0.4em]">// SYSTEM_ARCHITECTURE</p>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase tracking-tighter">TECHNICAL_FRAGMENTS</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Fragment Group -->
+<div class="border-l border-white/10 pl-8 py-4">
+<h4 class="font-code-sm text-white border-b border-white/10 pb-4 mb-8 uppercase tracking-widest">[CORE_LOGIC]</h4>
+<ul class="space-y-6">
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">Python / FastAPI</span>
+<span class="font-code-sm text-white/20">01</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">PostgreSQL</span>
+<span class="font-code-sm text-white/20">02</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">Rust Systems</span>
+<span class="font-code-sm text-white/20">03</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">GraphQL</span>
+<span class="font-code-sm text-white/20">04</span>
+</li>
+</ul>
+</div>
+<div class="border-l border-white/10 pl-8 py-4">
+<h4 class="font-code-sm text-white border-b border-white/10 pb-4 mb-8 uppercase tracking-widest">[VISUAL_SHELL]</h4>
+<ul class="space-y-6">
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">React / Next.js</span>
+<span class="font-code-sm text-white/20">05</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">Tailwind CSS</span>
+<span class="font-code-sm text-white/20">06</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">Three.js / WebGL</span>
+<span class="font-code-sm text-white/20">07</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">Figma Engineering</span>
+<span class="font-code-sm text-white/20">08</span>
+</li>
+</ul>
+</div>
+<div class="border-l border-white/10 pl-8 py-4">
+<h4 class="font-code-sm text-white border-b border-white/10 pb-4 mb-8 uppercase tracking-widest">[SYSTEM_INFRA]</h4>
+<ul class="space-y-6">
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">Docker / K8s</span>
+<span class="font-code-sm text-white/20">09</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">AWS / Terraform</span>
+<span class="font-code-sm text-white/20">10</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">CI/CD Pipelines</span>
+<span class="font-code-sm text-white/20">11</span>
+</li>
+<li class="flex justify-between items-center group">
+<span class="font-body-md text-secondary group-hover:text-primary-fixed-dim transition-colors">Redis Caching</span>
+<span class="font-code-sm text-white/20">12</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Work Process -->
+<section class="py-section-gap" id="process">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase mb-24 tracking-tighter text-right">WORK_PROCESS</h2>
+<div class="relative">
+<div class="absolute left-0 top-0 w-[1px] h-full bg-white/10"></div>
+<div class="space-y-24">
+<div class="relative pl-12 group">
+<div class="absolute left-[-4px] top-0 w-2 h-2 bg-primary-fixed-dim"></div>
+<span class="font-code-sm text-primary-fixed-dim uppercase tracking-widest">[01_DISCOVERY]</span>
+<h4 class="font-headline-md text-white uppercase my-4">Audit &amp; Exploration</h4>
+<p class="font-body-md text-secondary max-w-xl">Deep dive into current limitations, user requirements, and technical constraints to map out the tactical objective.</p>
+</div>
+<div class="relative pl-12 group">
+<div class="absolute left-[-4px] top-0 w-2 h-2 bg-white/30"></div>
+<span class="font-code-sm text-white/30 uppercase tracking-widest">[02_ARCHITECTURE]</span>
+<h4 class="font-headline-md text-white uppercase my-4">Blueprint Design</h4>
+<p class="font-body-md text-secondary max-w-xl">Establishing the foundation—ERDs, system flowcharts, and technical stack selection based on durability goals.</p>
+</div>
+<div class="relative pl-12 group">
+<div class="absolute left-[-4px] top-0 w-2 h-2 bg-white/30"></div>
+<span class="font-code-sm text-white/30 uppercase tracking-widest">[03_EXECUTION]</span>
+<h4 class="font-headline-md text-white uppercase my-4">Rapid Prototyping</h4>
+<p class="font-body-md text-secondary max-w-xl">Sprints of high-intensity coding where the abstract architecture becomes a functional, living system.</p>
+</div>
+<div class="relative pl-12 group">
+<div class="absolute left-[-4px] top-0 w-2 h-2 bg-white/30"></div>
+<span class="font-code-sm text-white/30 uppercase tracking-widest">[04_STRESS_TEST]</span>
+<h4 class="font-headline-md text-white uppercase my-4">Protocol Validation</h4>
+<p class="font-body-md text-secondary max-w-xl">Rigorous QA, load testing, and security audits to ensure the system is unbreakable under fire.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Terminal -->
+<section class="mb-section-gap">
+<div class="border border-white/20 bg-black/80 rounded-t-lg overflow-hidden">
+<div class="bg-white/10 px-4 py-2 flex items-center justify-between">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+</div>
+<span class="font-code-sm text-white/50 tracking-tighter">bash — terminal_core — 80x24</span>
+<div></div>
+</div>
+<div class="p-6 font-code-sm text-primary-fixed-dim h-64 flex flex-col gap-2">
+<p><span class="text-white">user@core:~$</span> help</p>
+<p class="text-secondary">Available commands: [projects], [stack], [contact], [clear]</p>
+<p><span class="text-white">user@core:~$</span> contact</p>
+<p class="text-primary-fixed-dim">INITIATING SECURE HANDSHAKE...</p>
+<p class="text-primary-fixed-dim">ENCRYPTION: AES-256 GCM</p>
+<p class="text-secondary">Awaiting input_</p>
+<div class="flex gap-2 items-center">
+<span class="text-white">user@core:~$</span>
+<div class="w-2 h-4 bg-primary-fixed-dim"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-section-gap flex flex-col items-center justify-center text-center" id="contact">
+<span class="font-code-sm text-primary-fixed-dim tracking-[0.5em] mb-8">SIGNAL_AVAILABLE</span>
+<button class="font-display-2xl text-display-lg-mobile md:text-display-2xl text-white uppercase hover:text-primary-fixed-dim transition-colors leading-none tracking-tighter mb-12">
+                INITIATE_<br/>CONNECTION
+            </button>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 w-full max-w-3xl pt-12 border-t border-white/10">
+<div class="flex flex-col items-center">
+<span class="font-code-sm text-white mb-2 uppercase">Github</span>
+<span class="font-body-md text-secondary">@terminal_sys</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-code-sm text-white mb-2 uppercase">X_Space</span>
+<span class="font-body-md text-secondary">@core_dev</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-code-sm text-white mb-2 uppercase">LinkedIn</span>
+<span class="font-body-md text-secondary">/in/system_arch</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-code-sm text-white mb-2 uppercase">Email</span>
+<span class="font-body-md text-secondary">root@core.dev</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-white bg-background">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter py-section-gap w-full max-w-container-max mx-auto">
+<div class="mb-8 md:mb-0">
+<h3 class="font-display-lg text-headline-md text-on-surface uppercase">TERMINAL_SYSTEMS</h3>
+<p class="font-code-sm text-outline mt-2 uppercase tracking-widest">©2024 TERMINAL_SYSTEMS</p>
+</div>
+<div class="flex flex-wrap gap-8 justify-center">
+<a class="font-code-sm text-outline uppercase tracking-widest hover:text-primary-fixed-dim transition-colors" href="#">SOURCE</a>
+<a class="font-code-sm text-outline uppercase tracking-widest hover:text-primary-fixed-dim transition-colors" href="#">DOCS</a>
+<a class="font-code-sm text-outline uppercase tracking-widest hover:text-primary-fixed-dim transition-colors" href="#">STATUS</a>
+<a class="font-code-sm text-outline uppercase tracking-widest hover:text-primary-fixed-dim transition-colors" href="#">X_SPACE</a>
+</div>
+</div>
+</footer>
+<div class="fixed bottom-8 right-8 z-50 md:hidden">
+<button class="w-14 h-14 bg-primary-container text-on-primary rounded-full flex items-center justify-center shadow-2xl">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Theme accent updated to #0052CC | Hero name font size +11px */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased transition-colors duration-300 uppercase;
+}
+
+body, input, textarea, button, select {
+  text-transform: uppercase;
+}
+
+html.dark body {
+  @apply bg-void text-void-ink;
+}
+
+.font-display {
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+::-moz-selection {
+  background: #001A4D;
+  color: #ffffff;
+}
+
+::selection {
+  background: #001A4D;
+  color: #ffffff;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #003D99;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.grid-texture {
+  background-image:
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: 0 81px;
+  opacity: 0.14;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.15) 12%, rgba(0, 0, 0, 0.85) 30%, rgba(0, 0, 0, 0.85) 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.15) 12%, rgba(0, 0, 0, 0.85) 30%, rgba(0, 0, 0, 0.85) 75%, transparent 100%);
+}
+
+.det-frame {
+  position: relative;
+}
+
+.tag-mono {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes fallingComments {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(220px);
+    opacity: 0;
+  }
+}
+
+@keyframes diagonalScan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 80px 80px;
+  }
+}
+
+@keyframes starPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+.diagonal-scan-lines {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 61, 153, 0.2),
+    rgba(0, 61, 153, 0.2) 1.5px,
+    transparent 1.5px,
+    transparent 18px
+  );
+  background-size: 80px 80px;
+  animation: diagonalScan 14s linear infinite;
+}
+
+.star-spark {
+  animation: starPulse 2.5s ease-in-out infinite;
+}
