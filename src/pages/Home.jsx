@@ -79,7 +79,7 @@ export default function Home() {
                   View Projects <ArrowUpRight size={16} className="md:w-4 md:h-4" />
                 </Link>
                 <a
-                  href="/resume.pdf"
+                  href="/docs/resume/resume.pdf"
                   className="inline-flex items-center gap-1.5 md:gap-2 px-3.5 md:px-[25px] py-[10px] text-xs md:text-base whitespace-nowrap -ml-0 md:-ml-[8.2px] translate-y-[0.5px] translate-x-[8px] border border-ink bg-paper text-ink dark:border-paper dark:bg-void dark:text-void-ink font-medium shadow-[0_10px_28px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 transition-all duration-300"
                 >
                   Download Resume <Download size={16} className="md:w-4 md:h-4" />

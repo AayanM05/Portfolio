@@ -20,7 +20,7 @@ export const timelineItems = [
     title: "Bachelor of Engineering (BE), Computer Engineering",
     place: "Dr. D.Y. Patil College of Engineering and Innovation, Varale, Pune",
     detail: "Final CGPA 7.01 · Fourth-year SGPA 7.88 · Core focus in Full-Stack Engineering, Cloud Architecture, and Machine Learning.",
-    marksheetUrl: "/marksheets/be-final.pdf",
+    marksheetUrl: "/docs/marksheets/be-final.pdf",
     linkText: "View marksheet",
   },
   {
@@ -30,7 +30,7 @@ export const timelineItems = [
     title: "Python-Django Developer Intern",
     place: "Elite Softwares Pvt. Ltd., Wakad, Pune",
     detail: "Built SeizeDeals, a Django e-commerce platform, from schema design through deployment — product catalog, cart and checkout flow, and admin tooling.",
-    marksheetUrl: "/certificates/elite-internship.pdf",
+    marksheetUrl: "/docs/certificates/elite-internship.pdf",
     linkText: "View internship certificate",
   },
   {
@@ -40,7 +40,7 @@ export const timelineItems = [
     title: "Diploma, Computer Engineering",
     place: "Zeal Polytechnic, Narhe, Pune",
     detail: "83.89% aggregate · foundation in core computer engineering subjects before moving into a specialized BE program.",
-    marksheetUrl: "/marksheets/diploma.pdf",
+    marksheetUrl: "/docs/marksheets/diploma.pdf",
     linkText: "View marksheet",
   },
   {
@@ -50,7 +50,7 @@ export const timelineItems = [
     title: "Secondary School Certificate Board (SSC)",
     place: "Shri. Chakradhar Swami Secondary School, Dattanagar, Pune",
     detail: "86.20% aggregate · final school-leaving examination ahead of the diploma track.",
-    marksheetUrl: "/marksheets/ssc.pdf",
+    marksheetUrl: "/docs/marksheets/ssc.pdf",
     linkText: "View marksheet",
   },
 ];
@@ -64,14 +64,14 @@ export const certifications = [
     title: "Python-Django Developer Intern",
     issuer: "Elite Softwares Pvt. Ltd.",
     date: "February 2025",
-    url: "/certificates/elite-internship.pdf",
+    url: "/docs/certificates/elite-internship.pdf",
   },
   {
     id: "exl",
     title: "Java and SQL Development Program",
     issuer: "TNS India Foundation",
     date: "August 2025",
-    url: "/certificates/exl-java-sql.pdf",
+    url: "/docs/certificates/exl-java-sql.pdf",
   },
 ];
 
@@ -80,7 +80,7 @@ export const researchPaper = {
     "AI-Powered E-Waste Recycling and Management Platform Using YOLOv8 and Location-Based Collector Assignment",
   venue: "NCIRPIS-2026",
   detail: "Vol. 3, Issue 1 · Paper ID SP-2026-015 · June 2026",
-  url: "/papers/erecyclo-ncirpis-2026.pdf",
+  url: "/docs/papers/erecyclo-ncirpis-2026.pdf",
 };
 
 export const skills = [
