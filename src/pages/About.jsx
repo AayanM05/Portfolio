@@ -57,11 +57,14 @@ export default function About() {
                 <p>I'm currently looking for fresher developer roles.</p>
               </motion.div>
 
+              {/* Profile photo on mobile view (positioned above CGPA and project counters) */}
+              <AvatarAbstract className="mt-12 mb-14 md:hidden" />
+
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-12"
+                className="mt-12 md:mt-12"
               >
                 <StatStrip
                   border={false}
@@ -75,7 +78,8 @@ export default function About() {
               </motion.div>
             </div>
 
-            <AvatarAbstract className="mt-12 md:mt-0" />
+            {/* Profile photo on desktop view */}
+            <AvatarAbstract className="hidden md:block" />
           </div>
         </section>
       </div>

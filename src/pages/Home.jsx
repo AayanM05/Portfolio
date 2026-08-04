@@ -87,7 +87,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <AvatarAbstract className="mt-12 md:mt-0" />
+            <AvatarAbstract className="hidden md:block" />
           </div>
         </section>
 
