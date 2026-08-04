@@ -38,7 +38,7 @@ export default function ProjectDetail() {
             <div className="mt-4 grid md:grid-cols-[1fr_auto] gap-8 md:gap-14 items-start">
               <div>
                 <DetectionFrame tag={`CLASS: ${project.class}`} always>
-                  <h1 className="font-display font-bold text-display-lg leading-none uppercase mt-3 tracking-wide">
+                  <h1 className="font-display font-bold text-[calc(3.2rem+13px)] md:text-display-lg leading-none uppercase mt-3 mb-[11px] md:mb-0 tracking-wide">
                     {project.name}
                   </h1>
                 </DetectionFrame>
