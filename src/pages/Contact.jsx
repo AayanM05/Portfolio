@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Github, Mail, Send } from "lucide-react";
+import { motion } from "framer-motion";
+import { Github, Mail, Send, ArrowUpRight } from "lucide-react";
 import { profile, quickFacts } from "../data/content";
 import AbstractField from "../components/AbstractField";
-import Section, { formatEyebrow } from "../components/Section";
+import DetectionFrame from "../components/DetectionFrame";
+import Section from "../components/Section";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -20,86 +22,226 @@ export default function Contact() {
 
   return (
     <>
-      <section className="relative pt-hero-top pb-20 md:pt-hero-top-lg md:pb-28 px-6 md:px-10 overflow-hidden">
-        <AbstractField variant="compact" />
-        <div className="max-w-container mx-auto relative">
-          <span className="tag-mono text-[1.2rem] font-bold tracking-wider text-accent dark:text-accent-dark">{formatEyebrow("Get in touch")}</span>
-          <h1 className="font-display text-display-lg mt-4 max-w-2xl">Let's build something.</h1>
-          <p className="mt-6 max-w-xl text-lg text-ink-soft dark:text-void-soft leading-relaxed">
-            Open to fresher developer roles in Pune or Mumbai. The fastest way to reach me is email.
-          </p>
+      {/* Hero Section matching Projects page design system 100% */}
+      <div className="relative overflow-hidden bg-paper dark:bg-void pb-20 md:pb-28">
+        <AbstractField variant="hero" />
 
-          <div className="grid md:grid-cols-2 gap-16 mt-20">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="tag-mono text-ink-soft dark:text-void-soft">Name</label>
-                <input
-                  id="name" name="name" required value={form.name} onChange={handleChange}
-                  className="w-full mt-2 bg-transparent border-b border-line dark:border-void-line py-3 outline-none"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="tag-mono text-ink-soft dark:text-void-soft">Email</label>
-                <input
-                  id="email" name="email" type="email" required value={form.email} onChange={handleChange}
-                  className="w-full mt-2 bg-transparent border-b border-line dark:border-void-line py-3 outline-none"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="tag-mono text-ink-soft dark:text-void-soft">Message</label>
-                <textarea
-                  id="message" name="message" required rows={4} value={form.message} onChange={handleChange}
-                  className="w-full mt-2 bg-transparent border-b border-line dark:border-void-line py-3 outline-none resize-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-ink text-paper dark:bg-void-ink dark:text-void font-medium hover:opacity-85 transition-opacity"
-              >
-                Send message <Send size={16} />
-              </button>
-              <p className="tag-mono text-ink-soft dark:text-void-soft !mt-3">
-                Opens your email app — this site doesn't run a backend.
-              </p>
-            </form>
+        {/* Hero Section */}
+        <section className="relative pt-[189px] pb-[112px] md:pt-[182px] md:pb-[128px] px-6 md:px-10 translate-y-[11px] md:translate-y-[2px]">
+          <div className="max-w-container mx-auto relative">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <DetectionFrame tag="PAGE: CONTACT" always>
+                <h1
+                  className="font-display font-bold text-[calc(3.2rem+13px)] md:text-display-lg leading-[1.05] sm:leading-none md:leading-[1.02] mt-4 flex flex-col"
+                  style={{ letterSpacing: "0.017em" }}
+                >
+                  <span>LET'S BUILD</span>
+                  <span className="-ml-[2px]">SOMETHING.</span>
+                </h1>
+              </DetectionFrame>
+            </motion.div>
 
-            <div className="space-y-6">
-              <a
-                href={`mailto:${profile.email}`}
-                className="flex items-center gap-4 border border-line dark:border-void-line p-6 hover:border-accent dark:hover:border-accent-dark transition-colors group"
-              >
-                <span className="w-11 h-11 rounded-full border border-line dark:border-void-line flex items-center justify-center shrink-0 group-hover:border-accent dark:group-hover:border-accent-dark transition-colors">
-                  <Mail size={18} />
+            {/* Quick Status Badges Strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-8 flex flex-wrap gap-2 md:gap-2.5 max-w-3xl"
+            >
+              {[
+                "FRESHER DEVELOPER ROLES",
+                "PUNE & MUMBAI",
+                "FULL-STACK",
+                "BACKEND / AI",
+                "AVAILABLE IMMEDIATELY",
+                "RESPONSE: < 24 HOURS",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="tag-mono text-[9.5px] sm:text-[10.5px] md:text-[11.5px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 border border-line/60 dark:border-void-line/80 text-accent dark:text-accent-dark bg-paper/60 dark:bg-void-ink/5 tracking-wider uppercase inline-flex"
+                >
+                  {tag}
                 </span>
-                <div>
-                  <p className="tag-mono text-ink-soft dark:text-void-soft">Email</p>
-                  <p className="font-display text-lg mt-1">{profile.email}</p>
-                </div>
-              </a>
-              <a
-                href={profile.githubUrl} target="_blank" rel="noreferrer"
-                className="flex items-center gap-4 border border-line dark:border-void-line p-6 hover:border-accent dark:hover:border-accent-dark transition-colors group"
-              >
-                <span className="w-11 h-11 rounded-full border border-line dark:border-void-line flex items-center justify-center shrink-0 group-hover:border-accent dark:group-hover:border-accent-dark transition-colors">
-                  <Github size={18} />
+              ))}
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 max-w-2xl text-sm md:text-base font-medium text-ink-soft dark:text-void-soft leading-relaxed"
+            >
+              Currently seeking fresher software engineering and full-stack developer roles. The fastest way to reach me is directly via email or the dispatch form below.
+            </motion.p>
+          </div>
+        </section>
+      </div>
+
+      {/* Main Dispatch Section */}
+      <Section eyebrow="Dispatch" title="Send a direct message">
+        <div className="grid md:grid-cols-2 gap-10 items-start">
+          {/* Contact Form Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <DetectionFrame tag="DISPATCH: EMAIL" always>
+              <div className="border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-7 md:p-9 transition-all duration-300 hover:border-accent dark:hover:border-accent-dark shadow-sm hover:shadow-md">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="tag-mono text-xs font-bold text-accent dark:text-accent-dark tracking-wider uppercase">
+                      Your Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      required
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="E.G. ALEX MORGAN"
+                      className="w-full mt-2 bg-paper/50 dark:bg-void-ink/5 border border-line/60 dark:border-void-line/80 px-4 py-3 text-sm font-medium text-ink dark:text-void-ink outline-none focus:border-accent dark:focus:border-accent-dark transition-colors uppercase placeholder:text-ink-soft/40 dark:placeholder:text-void-soft/40"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="tag-mono text-xs font-bold text-accent dark:text-accent-dark tracking-wider uppercase">
+                      Your Email
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="ALEX@COMPANY.COM"
+                      className="w-full mt-2 bg-paper/50 dark:bg-void-ink/5 border border-line/60 dark:border-void-line/80 px-4 py-3 text-sm font-medium text-ink dark:text-void-ink outline-none focus:border-accent dark:focus:border-accent-dark transition-colors uppercase placeholder:text-ink-soft/40 dark:placeholder:text-void-soft/40"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="tag-mono text-xs font-bold text-accent dark:text-accent-dark tracking-wider uppercase">
+                      Project / Role Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={4}
+                      value={form.message}
+                      onChange={handleChange}
+                      placeholder="WHAT WOULD YOU LIKE TO BUILD OR DISCUSS?"
+                      className="w-full mt-2 bg-paper/50 dark:bg-void-ink/5 border border-line/60 dark:border-void-line/80 px-4 py-3 text-sm font-medium text-ink dark:text-void-ink outline-none focus:border-accent dark:focus:border-accent-dark transition-colors resize-none uppercase placeholder:text-ink-soft/40 dark:placeholder:text-void-soft/40"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:bg-accent dark:hover:bg-accent-dark transition-all duration-200"
+                  >
+                    Send Message <Send size={15} />
+                  </button>
+
+                  <p className="tag-mono text-[10.5px] text-ink-soft/70 dark:text-void-soft/70 text-center tracking-wider uppercase pt-2">
+                    Direct Mailto Trigger — Opens Your Default Mail Client
+                  </p>
+                </form>
+              </div>
+            </DetectionFrame>
+          </motion.div>
+
+          {/* Contact Direct Channels */}
+          <div className="space-y-6">
+            {/* Email Card */}
+            <motion.a
+              href={`mailto:${profile.email}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="group block border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-7 transition-all duration-300 hover:border-accent dark:hover:border-accent-dark shadow-sm hover:shadow-md"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="tag-mono text-xs font-bold px-3 py-1 border border-accent dark:border-accent-dark text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 tracking-widest uppercase">
+                  Primary Email
                 </span>
-                <div>
-                  <p className="tag-mono text-ink-soft dark:text-void-soft">GitHub</p>
-                  <p className="font-display text-lg mt-1">{profile.github}</p>
+                <ArrowUpRight size={18} className="text-ink-soft/60 dark:text-void-soft/60 group-hover:text-accent dark:group-hover:text-accent-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+              </div>
+              <div className="flex items-center gap-4 mt-4">
+                <div className="w-12 h-12 border border-line/60 dark:border-void-line/80 bg-paper/60 dark:bg-void-ink/5 flex items-center justify-center shrink-0 text-accent dark:text-accent-dark group-hover:border-accent dark:group-hover:border-accent-dark transition-colors">
+                  <Mail size={20} />
                 </div>
-              </a>
-            </div>
+                <div>
+                  <h3 className="font-display font-bold text-xl md:text-2xl uppercase tracking-wider text-ink dark:text-void-ink group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
+                    {profile.email}
+                  </h3>
+                  <p className="text-xs tag-mono text-ink-soft dark:text-void-soft mt-1">
+                    Direct Inbox · Replies within 24 hours
+                  </p>
+                </div>
+              </div>
+            </motion.a>
+
+            {/* GitHub Card */}
+            <motion.a
+              href={profile.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group block border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-7 transition-all duration-300 hover:border-accent dark:hover:border-accent-dark shadow-sm hover:shadow-md"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="tag-mono text-xs font-bold px-3 py-1 border border-accent dark:border-accent-dark text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/10 tracking-widest uppercase">
+                  Code Repository
+                </span>
+                <ArrowUpRight size={18} className="text-ink-soft/60 dark:text-void-soft/60 group-hover:text-accent dark:group-hover:text-accent-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+              </div>
+              <div className="flex items-center gap-4 mt-4">
+                <div className="w-12 h-12 border border-line/60 dark:border-void-line/80 bg-paper/60 dark:bg-void-ink/5 flex items-center justify-center shrink-0 text-accent dark:text-accent-dark group-hover:border-accent dark:group-hover:border-accent-dark transition-colors">
+                  <Github size={20} />
+                </div>
+                <div>
+                  <h3 className="font-display font-bold text-xl md:text-2xl uppercase tracking-wider text-ink dark:text-void-ink group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
+                    {profile.github}
+                  </h3>
+                  <p className="text-xs tag-mono text-ink-soft dark:text-void-soft mt-1">
+                    Public Commits & Source Code
+                  </p>
+                </div>
+              </div>
+            </motion.a>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <Section eyebrow="Quick facts" title="Before you write in" bordered>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {quickFacts.map((f) => (
-            <div key={f.label} className="border-t border-line dark:border-void-line pt-5">
-              <p className="tag-mono text-ink-soft dark:text-void-soft">{f.label}</p>
-              <p className="font-display text-xl mt-2">{f.value}</p>
-            </div>
+      {/* Quick Facts Section matching Projects page selection grid */}
+      <Section eyebrow="Overview" title="Quick Facts">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {quickFacts.map((f, i) => (
+            <motion.div
+              key={f.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-6 hover:border-accent dark:hover:border-accent-dark transition-all duration-200"
+            >
+              <span className="tag-mono text-accent dark:text-accent-dark font-bold text-xs uppercase tracking-wider">
+                {f.label}
+              </span>
+              <p className="font-display font-bold text-lg md:text-xl uppercase tracking-wider text-ink dark:text-void-ink mt-3">
+                {f.value}
+              </p>
+            </motion.div>
           ))}
         </div>
       </Section>

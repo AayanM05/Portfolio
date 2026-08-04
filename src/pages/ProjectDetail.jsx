@@ -16,8 +16,8 @@ export default function ProjectDetail() {
   if (!project) return <Navigate to="/projects" replace />;
 
   const currentIndex = catalogList.findIndex((p) => p.id === id);
-  const next = catalogList[(currentIndex + 1) % catalogList.length];
-  const prev = catalogList[(currentIndex - 1 + catalogList.length) % catalogList.length];
+  const prev = currentIndex > 0 ? catalogList[currentIndex - 1] : null;
+  const next = currentIndex < catalogList.length - 1 ? catalogList[currentIndex + 1] : null;
 
   const mainLang = project.mainLanguage || (project.stack && project.stack.slice(0, 2).join(" · "));
   const mainLangTokens = (mainLang || "").toLowerCase().split(/[\s·\/\&\,]+/).filter(Boolean);
@@ -170,48 +170,88 @@ export default function ProjectDetail() {
       <Section className="pt-10 pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
           {/* Previous Project Card (Left) */}
-          <Link
-            to={`/projects/${prev.id}`}
-            className="group relative border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-6 flex flex-col justify-between transition-all duration-300 hover:border-accent dark:hover:border-accent-dark hover:shadow-md"
-          >
-            <div className="flex items-center gap-2 text-ink-soft/70 dark:text-void-soft/70 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors mb-4">
-              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-200" />
-              <span className="tag-mono text-[11px] font-bold uppercase tracking-wider">
-                Previous Case Study
-              </span>
-            </div>
+          {prev ? (
+            <Link
+              to={`/projects/${prev.id}`}
+              className="group relative border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-6 flex flex-col justify-between transition-all duration-300 hover:border-accent dark:hover:border-accent-dark hover:shadow-md"
+            >
+              <div className="flex items-center gap-2 text-ink-soft/70 dark:text-void-soft/70 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors mb-4">
+                <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-200" />
+                <span className="tag-mono text-[11px] font-bold uppercase tracking-wider">
+                  Previous Case Study
+                </span>
+              </div>
 
-            <div>
-              <h4 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wider text-ink dark:text-void-ink group-hover:text-accent dark:group-hover:text-accent-dark transition-colors duration-200">
-                {prev.name}
-              </h4>
-              <p className="text-xs tag-mono text-ink-soft dark:text-void-soft mt-1.5">
-                {prev.class}
-              </p>
+              <div>
+                <h4 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wider text-ink dark:text-void-ink group-hover:text-accent dark:group-hover:text-accent-dark transition-colors duration-200">
+                  {prev.name}
+                </h4>
+                <p className="text-xs tag-mono text-ink-soft dark:text-void-soft mt-1.5">
+                  {prev.class}
+                </p>
+              </div>
+            </Link>
+          ) : (
+            <div className="relative border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-6 flex flex-col justify-between cursor-not-allowed select-none">
+              <div className="flex items-center gap-2 text-ink-soft/70 dark:text-void-soft/70 mb-4">
+                <ArrowLeft size={16} className="opacity-50" />
+                <span className="tag-mono text-[11px] font-bold uppercase tracking-wider text-ink-soft/70 dark:text-void-soft/70">
+                  No Previous Case Study
+                </span>
+              </div>
+
+              <div>
+                <h4 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wider text-ink/70 dark:text-void-ink/70">
+                  NO PREVIOUS
+                </h4>
+                <p className="text-xs tag-mono text-ink-soft/60 dark:text-void-soft/60 mt-1.5">
+                  Start of Catalog
+                </p>
+              </div>
             </div>
-          </Link>
+          )}
 
           {/* Next Project Card (Right) */}
-          <Link
-            to={`/projects/${next.id}`}
-            className="group relative border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-6 flex flex-col justify-between text-right transition-all duration-300 hover:border-accent dark:hover:border-accent-dark hover:shadow-md"
-          >
-            <div className="flex items-center justify-end gap-2 text-ink-soft/70 dark:text-void-soft/70 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors mb-4">
-              <span className="tag-mono text-[11px] font-bold uppercase tracking-wider">
-                Next Case Study
-              </span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
-            </div>
+          {next ? (
+            <Link
+              to={`/projects/${next.id}`}
+              className="group relative border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-6 flex flex-col justify-between text-right transition-all duration-300 hover:border-accent dark:hover:border-accent-dark hover:shadow-md"
+            >
+              <div className="flex items-center justify-end gap-2 text-ink-soft/70 dark:text-void-soft/70 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors mb-4">
+                <span className="tag-mono text-[11px] font-bold uppercase tracking-wider">
+                  Next Case Study
+                </span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+              </div>
 
-            <div>
-              <h4 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wider text-ink dark:text-void-ink group-hover:text-accent dark:group-hover:text-accent-dark transition-colors duration-200">
-                {next.name}
-              </h4>
-              <p className="text-xs tag-mono text-ink-soft dark:text-void-soft mt-1.5">
-                {next.class}
-              </p>
+              <div>
+                <h4 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wider text-ink dark:text-void-ink group-hover:text-accent dark:group-hover:text-accent-dark transition-colors duration-200">
+                  {next.name}
+                </h4>
+                <p className="text-xs tag-mono text-ink-soft dark:text-void-soft mt-1.5">
+                  {next.class}
+                </p>
+              </div>
+            </Link>
+          ) : (
+            <div className="relative border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-6 flex flex-col justify-between text-right cursor-not-allowed select-none">
+              <div className="flex items-center justify-end gap-2 text-ink-soft/70 dark:text-void-soft/70 mb-4">
+                <span className="tag-mono text-[11px] font-bold uppercase tracking-wider text-ink-soft/70 dark:text-void-soft/70">
+                  No Next Case Study
+                </span>
+                <ArrowRight size={16} className="opacity-50" />
+              </div>
+
+              <div>
+                <h4 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wider text-ink/70 dark:text-void-ink/70">
+                  NO NEXT
+                </h4>
+                <p className="text-xs tag-mono text-ink-soft/60 dark:text-void-soft/60 mt-1.5">
+                  End of Catalog
+                </p>
+              </div>
             </div>
-          </Link>
+          )}
         </div>
       </Section>
     </>

@@ -40,6 +40,21 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Global button hover translation: exactly 1px upward */
+.bg-ink,
+button[type="submit"],
+a.bg-ink,
+button.bg-ink {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.bg-ink:hover,
+button[type="submit"]:hover,
+a.bg-ink:hover,
+button.bg-ink:hover {
+  transform: translateY(-1px) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

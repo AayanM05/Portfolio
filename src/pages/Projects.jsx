@@ -26,7 +26,7 @@ const criteria = [
 export default function Projects() {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsSectionRef = useRef(null);
-  const PROJECTS_PER_PAGE = 7;
+  const PROJECTS_PER_PAGE = 6;
 
   const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
   const indexOfLastProject = currentPage * PROJECTS_PER_PAGE;

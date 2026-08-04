@@ -820,7 +820,8 @@ export const quotes = {
   home: { line: "Build with clarity. Ship with confidence." },
   about: { line: "First make it work. Then make it right." },
   projects: { line: "Simplicity is prerequisite for reliability." },
-  achievements: { line: "Depth beats breadth." },
+  skills: { line: "Learn the core. Master the craft." },
+  achievements: { line: "Excellence is a habit, not an accident." },
 };
 
 export const process = [

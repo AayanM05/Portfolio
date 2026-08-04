@@ -20,9 +20,9 @@ export default function SkillRow({ skill }) {
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
     >
-      <button type="button" className="w-full flex items-center justify-between text-left" aria-expanded={open}>
-        <span className="text-lg">{skill.name}</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-dark shrink-0" />
+      <button type="button" className="w-full flex items-center justify-between text-left py-1" aria-expanded={open}>
+        <span className="text-[13.3px] font-medium tracking-wide uppercase text-ink dark:text-void-ink">{skill.name}</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-accent dark:bg-accent-dark shrink-0 ml-2" />
       </button>
 
       <AnimatePresence>
