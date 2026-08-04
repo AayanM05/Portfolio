@@ -115,7 +115,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 md:mt-8 max-w-2xl text-[12.8px] md:text-base font-medium text-ink-soft dark:text-void-soft leading-relaxed"
+              className="mt-6 md:mt-8 max-w-2xl text-sm md:text-base font-medium text-ink-soft dark:text-void-soft leading-relaxed"
             >
               A curated collection of full-stack engineering builds — spanning real-time AI computer vision, Spring Boot backend microservices, and production web platforms. Select any project to inspect system architecture, schema design, and technical case studies.
             </motion.p>

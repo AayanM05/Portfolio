@@ -78,10 +78,12 @@ export default function Achievements() {
                 "TNS INDIA FOUNDATION",
                 "BE COMPUTER ENGINEERING",
                 "CGPA 7.01",
-              ].map((tag) => (
+              ].map((tag, idx) => (
                 <span
                   key={tag}
-                  className="tag-mono text-[9.5px] sm:text-[10.5px] md:text-[11.5px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 border border-line/60 dark:border-void-line/80 text-accent dark:text-accent-dark bg-paper/60 dark:bg-void-ink/5 tracking-wider uppercase inline-flex"
+                  className={`tag-mono text-[9.5px] sm:text-[10.5px] md:text-[11.5px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 border border-line/60 dark:border-void-line/80 text-accent dark:text-accent-dark bg-paper/60 dark:bg-void-ink/5 tracking-wider uppercase ${
+                    idx >= 6 ? "hidden md:inline-flex" : "inline-flex"
+                  }`}
                 >
                   {tag}
                 </span>
@@ -156,7 +158,7 @@ export default function Achievements() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="h-full"
+            className="h-full mt-[32px] md:mt-0"
           >
             <DetectionFrame tag="CLASS: CERTIFICATIONS" always className="h-full">
               <div className="border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-8 md:p-11 h-full flex flex-col justify-between transition-all duration-300 hover:border-accent dark:hover:border-accent-dark shadow-sm hover:shadow-md">

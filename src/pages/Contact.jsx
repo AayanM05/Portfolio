@@ -59,10 +59,12 @@ export default function Contact() {
                 "BACKEND / AI",
                 "AVAILABLE IMMEDIATELY",
                 "RESPONSE: < 24 HOURS",
-              ].map((tag) => (
+              ].map((tag, idx) => (
                 <span
                   key={tag}
-                  className="tag-mono text-[9.5px] sm:text-[10.5px] md:text-[11.5px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 border border-line/60 dark:border-void-line/80 text-accent dark:text-accent-dark bg-paper/60 dark:bg-void-ink/5 tracking-wider uppercase inline-flex"
+                  className={`tag-mono text-[9.5px] sm:text-[10.5px] md:text-[11.5px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 border border-line/60 dark:border-void-line/80 text-accent dark:text-accent-dark bg-paper/60 dark:bg-void-ink/5 tracking-wider uppercase ${
+                    idx >= 4 ? "hidden md:inline-flex" : "inline-flex"
+                  }`}
                 >
                   {tag}
                 </span>
