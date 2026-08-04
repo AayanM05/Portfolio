@@ -51,7 +51,7 @@ export default function Projects() {
         <AbstractField variant="hero" />
 
         {/* Hero Section */}
-        <section className="relative pt-[189px] pb-[112px] md:pt-[182px] md:pb-[128px] px-6 md:px-10 -translate-y-[11px] md:translate-y-[2px]">
+        <section className="relative pt-[189px] pb-[112px] md:pt-[182px] md:pb-[128px] px-6 md:px-10 translate-y-[11px] md:translate-y-[2px]">
           <div className="max-w-container mx-auto relative">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -60,7 +60,7 @@ export default function Projects() {
             >
               <DetectionFrame tag="PAGE: PROJECTS" always>
                 <h1
-                  className="font-display font-bold text-display-lg leading-[1.05] sm:leading-none md:leading-[1.02] mt-4 flex flex-col"
+                  className="font-display font-bold text-[calc(3.2rem+13px)] md:text-display-lg leading-[1.05] sm:leading-none md:leading-[1.02] mt-4 flex flex-col"
                   style={{ letterSpacing: "0.017em" }}
                 >
                   <span>PROJECT</span>
