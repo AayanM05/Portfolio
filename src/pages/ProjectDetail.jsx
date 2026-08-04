@@ -10,7 +10,7 @@ import StatStrip from "../components/StatStrip";
 
 export default function ProjectDetail() {
   const { id } = useParams();
-  const catalogList = allProjectsCatalog && allProjectsCatalog.length > 0 ? allProjectsCatalog : projects;
+  const catalogList = projects;
   const project = catalogList.find((p) => p.id === id);
 
   if (!project) return <Navigate to="/projects" replace />;
@@ -167,7 +167,7 @@ export default function ProjectDetail() {
       </Section>
 
       {/* Previous & Next Project Navigation Footer Bar */}
-      <Section bordered className="pt-10 pb-16">
+      <Section className="pt-10 pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
           {/* Previous Project Card (Left) */}
           <Link
