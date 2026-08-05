@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <style>
+    rect {
+      fill: none;
+      stroke: #000000;
+    }
+    text {
+      fill: #000000;
+    }
+    @media (prefers-color-scheme: dark) {
+      rect {
+        stroke: #ffffff;
+      }
+      text {
+        fill: #ffffff;
+      }
+    }
+  </style>
+  <rect x="3" y="3" width="42" height="42" stroke-width="4"/>
+  <text x="24" y="30" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="20" text-anchor="middle" letter-spacing="1">AM</text>
+</svg>
