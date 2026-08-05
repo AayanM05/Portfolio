@@ -25,6 +25,8 @@ export default function PdfModal({ open, onClose, src, label = "DOCUMENT · PDF 
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  const isCapacitor = typeof window !== "undefined" && !!window.Capacitor;
+
   if (!open) return null;
 
   return (
@@ -53,12 +55,24 @@ export default function PdfModal({ open, onClose, src, label = "DOCUMENT · PDF 
 
         {/* PDF Viewer — fills ALL remaining space */}
         <div className="flex-1 w-full border border-line/60 dark:border-void-line/60 bg-paper/80 dark:bg-void-ink/20 overflow-hidden" style={{ minHeight: 0 }}>
-          <iframe
-            src={`${src}#toolbar=0&navpanes=0&scrollbar=1`}
-            title={label}
-            className="w-full h-full"
-            style={{ border: "none", display: "block" }}
-          />
+          {isCapacitor ? (
+            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center gap-4">
+              <FileText size={48} className="text-accent dark:text-accent-dark opacity-60" />
+              <h3 className="font-display font-bold text-lg md:text-xl uppercase tracking-wider text-ink dark:text-void-ink">
+                App Preview Limited
+              </h3>
+              <p className="text-xs sm:text-sm font-medium text-ink-soft dark:text-void-soft max-w-xs leading-relaxed">
+                Direct PDF previews are not supported inside the app player. Use the button below to view it in your browser!
+              </p>
+            </div>
+          ) : (
+            <iframe
+              src={`${src}#toolbar=0&navpanes=0&scrollbar=1`}
+              title={label}
+              className="w-full h-full"
+              style={{ border: "none", display: "block" }}
+            />
+          )}
         </div>
 
         {/* Download Button */}
@@ -66,6 +80,12 @@ export default function PdfModal({ open, onClose, src, label = "DOCUMENT · PDF 
           <a
             href={src}
             download={downloadName}
+            onClick={(e) => {
+              if (isCapacitor) {
+                e.preventDefault();
+                window.open(src, "_system");
+              }
+            }}
             className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold tag-mono uppercase tracking-wider bg-ink text-paper dark:bg-void-ink dark:text-void shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-300"
           >
             <Download size={14} />

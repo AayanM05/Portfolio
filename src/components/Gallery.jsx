@@ -153,6 +153,12 @@ export default function Gallery({ id, count = 6, titles }) {
                     download={`${id}-screenshot-${activeModal + 1}.png`}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={(e) => {
+                      if (typeof window !== "undefined" && window.Capacitor) {
+                        e.preventDefault();
+                        window.open(currentSrc, "_system");
+                      }
+                    }}
                     className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold tag-mono uppercase tracking-wider bg-ink text-paper dark:bg-void-ink dark:text-void shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-300"
                     title="Download full resolution screenshot"
                   >
