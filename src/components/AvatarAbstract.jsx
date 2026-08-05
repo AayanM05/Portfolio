@@ -12,7 +12,7 @@ export default function AvatarAbstract({ className = "" }) {
         className="relative w-full h-full"
       >
         {/* Theme Accent Color Bottom Glow / Shadow */}
-        <div className="absolute -bottom-5 inset-x-6 h-20 bg-accent/40 dark:bg-accent-dark/60 blur-2xl rounded-full z-0 pointer-events-none" />
+        <div className="absolute -bottom-5 inset-x-6 h-20 bg-accent/40 dark:bg-accent-dark/25 blur-2xl rounded-full z-0 pointer-events-none" />
 
         {/* 4 Corner L-Brackets — Bold, Crisp & Precisely Positioned */}
         <div className="absolute -top-2.5 -left-2.5 w-4 h-4 border-t-2 border-l-2 border-accent dark:border-accent-dark z-30 pointer-events-none" />
@@ -21,7 +21,7 @@ export default function AvatarAbstract({ className = "" }) {
         <div className="absolute -bottom-2.5 -right-2.5 w-4 h-4 border-b-2 border-r-2 border-accent dark:border-accent-dark z-30 pointer-events-none" />
 
         {/* Main Image Container */}
-        <div className="relative w-full h-full border border-line dark:border-void-line bg-paper dark:bg-void overflow-hidden group shadow-[0_20px_50px_rgba(0,61,153,0.35)] dark:shadow-[0_25px_60px_rgba(0,61,153,0.55)] z-10">
+        <div className="relative w-full h-full border border-line dark:border-void-line bg-paper dark:bg-void overflow-hidden group shadow-[0_20px_50px_rgba(0,61,153,0.35)] dark:shadow-[0_20px_50px_rgba(0,61,153,0.20)] z-10">
           <img
             src="/profile.png"
             alt="Aayan Mulla"

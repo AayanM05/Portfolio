@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Download, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { formatEyebrow } from "./Section";
+import ResumeModal from "./ResumeModal";
 
 export default function ResumeSection() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div>
       <div className="max-w-container mx-auto px-6 md:px-10 py-14 md:py-16 pb-20 ">
@@ -29,15 +33,16 @@ export default function ResumeSection() {
               </p>
             </div>
           </div>
-          <a
-            href="/docs/resume/resume.pdf"
-            download
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm md:px-7 md:py-3.5 md:text-base bg-ink text-paper dark:bg-void-ink dark:text-void font-medium hover:opacity-85 transition-opacity shrink-0 w-fit mx-auto md:mx-0"
+          <button
+            onClick={() => setModalOpen(true)}
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm md:px-7 md:py-3.5 md:text-base bg-ink text-paper dark:bg-void-ink dark:text-void font-medium shrink-0 w-fit mx-auto md:mx-0 shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-300"
           >
             Download resume <Download size={17} />
-          </a>
+          </button>
         </motion.div>
       </div>
+
+      <ResumeModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

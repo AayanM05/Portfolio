@@ -10,7 +10,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-line/40 dark:border-void-line/40 bg-paper/80 dark:bg-void/80 backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.18)]">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-line/40 dark:border-void-line/40 bg-paper/80 dark:bg-void/80 backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
       <div className="max-w-container mx-auto px-6 md:px-10 h-[81px] flex items-center justify-between">
         <NavLink to="/" className="flex items-center gap-3.5 group ml-[1px] md:ml-0 lg:-ml-[16px]" onClick={() => setOpen(false)}>
           <span className="w-12 h-12 border-2 border-black dark:border-white rounded-none flex items-center justify-center font-display text-xl md:text-2xl text-accent dark:text-accent-dark shrink-0 bg-transparent group-hover:border-accent dark:group-hover:border-accent-dark transition-colors duration-300 leading-none antialiased tracking-[0.12em] pl-[0.12em]">
@@ -99,8 +99,8 @@ export default function Nav() {
               <span className="tag-mono text-xs text-accent dark:text-accent-dark font-bold uppercase tracking-wider">
                 {profile.name}
               </span>
-              <span className="text-xs text-ink dark:text-void-ink font-medium tracking-wide">
-                Pune, Maharashtra, India
+              <span className="tag-mono text-[10px] text-ink-soft dark:text-void-soft font-medium tracking-wider uppercase">
+                {profile.role}
               </span>
             </div>
           </motion.nav>

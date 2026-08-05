@@ -78,7 +78,7 @@ export const certifications = [
 export const researchPaper = {
   title:
     "AI-Powered E-Waste Recycling and Management Platform Using YOLOv8 and Location-Based Collector Assignment",
-  venue: "JACIIE-2026",
+  venue: "Journal of Academic Research in Computer & Industrial Engineering (JACIIE-2026)",
   detail: "Vol. 3, Issue 1 · Paper ID SP-2026-015 · June 2026",
   url: "/docs/papers/erecyclo-jaciie-2026.pdf",
 };
@@ -352,6 +352,14 @@ def checkout_view(request):
       { value: "Internship", label: "Delivered during" },
     ],
     takeaway: "Tutorials end. Deadlines don't.",
+    screenshotTitles: [
+      "01 / Home Page — Product Catalog & Banner",
+      "02 / Product Detail — Size Selection & Add to Cart",
+      "03 / Cart — Order Review & Line Items",
+      "04 / Payment Gateway — Razorpay Checkout & Success",
+      "05 / Order Invoice — Billing Summary & Tax Breakdown",
+      "06 / Admin Dashboard — Order & User Management",
+    ],
   },
   {
     id: "devpulse",
@@ -877,7 +885,7 @@ export const dailyTools = [
 export const quickFacts = [
   { label: "Based in", value: profile.location },
   { label: "Looking for", value: "Fresher developer roles" },
-  { label: "Open to", value: "Pune & Mumbai" },
+  { label: "Location", value: "Ready to Relocate" },
   { label: "Reply time", value: "Within a day" },
 ];
 

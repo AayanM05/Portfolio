@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
@@ -8,8 +9,11 @@ import QuoteBanner from "../components/QuoteBanner";
 import Section, { formatEyebrow } from "../components/Section";
 import StatStrip from "../components/StatStrip";
 import AvatarAbstract from "../components/AvatarAbstract";
+import PdfModal from "../components/PdfModal";
 
 export default function About() {
+  const [pdfModal, setPdfModal] = useState(null); // { src, label, downloadName }
+  const openPdf = (src, label, downloadName) => setPdfModal({ src, label, downloadName });
   return (
     <>
       {/* About Hero Section matching Home Hero design system */}
@@ -118,14 +122,12 @@ export default function About() {
                         {item.detail}
                       </p>
                       {item.marksheetUrl && (
-                        <a
-                          href={item.marksheetUrl}
-                          target="_blank"
-                          rel="noreferrer"
+                        <button
+                          onClick={() => openPdf(item.marksheetUrl, item.linkText, item.marksheetUrl.split("/").pop())}
                           className="inline-flex items-center gap-1 mt-3 tag-mono text-[11px] md:text-[12.5px] text-accent dark:text-accent-dark hover:opacity-75 transition-opacity font-semibold"
                         >
                           {item.linkText} <ArrowUpRight size={13} />
-                        </a>
+                        </button>
                       )}
                     </div>
                   </div>
@@ -169,11 +171,18 @@ export default function About() {
         <h2 className="font-display font-bold text-display-md tracking-[0.035em] mx-auto text-center">Curious about the work itself?</h2>
         <Link
           to="/projects"
-          className="inline-flex items-center gap-2 mt-8 px-4 py-2.5 md:px-6 md:py-3 text-sm md:text-base bg-ink text-paper dark:bg-void-ink dark:text-void font-medium hover:opacity-85 transition-opacity"
+          className="inline-flex items-center gap-2 mt-8 px-4 py-2.5 md:px-6 md:py-3 text-sm md:text-base bg-ink text-paper dark:bg-void-ink dark:text-void font-medium"
         >
           See the projects <ArrowUpRight size={16} className="md:hidden" /><ArrowUpRight size={18} className="hidden md:block" />
         </Link>
       </Section>
+      <PdfModal
+        open={!!pdfModal}
+        onClose={() => setPdfModal(null)}
+        src={pdfModal?.src || ""}
+        label={pdfModal?.label || ""}
+        downloadName={pdfModal?.downloadName || "document.pdf"}
+      />
     </>
   );
 }

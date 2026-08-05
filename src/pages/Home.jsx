@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import { profile, projects, researchPaper, certifications, quotes, process, dailyTools } from "../data/content";
@@ -9,6 +9,8 @@ import DetectionFrame from "../components/DetectionFrame";
 import QuoteBanner from "../components/QuoteBanner";
 import Section, { formatEyebrow } from "../components/Section";
 import AvatarAbstract from "../components/AvatarAbstract";
+import ResumeModal from "../components/ResumeModal";
+import { Link } from "react-router-dom";
 
 const toolGroups = [
   {
@@ -30,6 +32,8 @@ const toolGroups = [
 ];
 
 export default function Home() {
+  const [resumeOpen, setResumeOpen] = useState(false);
+
   return (
     <>
       {/* Hero & Marquee with continuous background grid extending past marquee */}
@@ -78,12 +82,12 @@ export default function Home() {
                 >
                   View Projects <ArrowUpRight size={16} className="md:w-4 md:h-4" />
                 </Link>
-                <a
-                  href="/docs/resume/resume.pdf"
+                <button
+                  onClick={() => setResumeOpen(true)}
                   className="inline-flex items-center gap-1.5 md:gap-2 px-3.5 md:px-[25px] py-[10px] text-xs md:text-base whitespace-nowrap -ml-0 md:-ml-[8.2px] translate-y-[0.5px] translate-x-[8px] border border-ink bg-paper text-ink dark:border-paper dark:bg-void dark:text-void-ink font-medium shadow-[0_10px_28px_rgba(0,0,0,0.06)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 transition-all duration-300"
                 >
                   Download Resume <Download size={16} className="md:w-4 md:h-4" />
-                </a>
+                </button>
               </motion.div>
             </div>
 
@@ -260,6 +264,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </>
   );
 }

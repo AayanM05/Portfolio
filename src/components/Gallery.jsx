@@ -4,11 +4,11 @@ import { ImagePlus, Maximize2, X, Download } from "lucide-react";
 /**
  * Clean 6-card interactive screenshot grid gallery with lightbox modal preview and download functionality.
  */
-export default function Gallery({ id, count = 6 }) {
+export default function Gallery({ id, count = 6, titles }) {
   const [activeModal, setActiveModal] = useState(null);
   const [candidateIndices, setCandidateIndices] = useState({});
 
-  const screenshotTitles = [
+  const defaultTitles = [
     "01 / Primary System Dashboard",
     "02 / Model Inference & AI Engine",
     "03 / Facility Discovery & Spatial Matching",
@@ -16,6 +16,7 @@ export default function Gallery({ id, count = 6 }) {
     "05 / OTP Chain-of-Custody Handoff",
     "06 / Transaction Audit & Wallet Payouts",
   ];
+  const screenshotTitles = (titles && titles.length) ? titles : defaultTitles;
 
   const getCandidateUrls = (projId, index) => {
     const num = index + 1;
@@ -152,7 +153,7 @@ export default function Gallery({ id, count = 6 }) {
                     download={`${id}-screenshot-${activeModal + 1}.png`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold tag-mono uppercase tracking-wider bg-ink text-paper dark:bg-void-ink dark:text-void border border-line dark:border-void-line hover:bg-accent hover:border-accent dark:hover:bg-accent-dark dark:hover:border-accent-dark transition-all duration-200 shadow-sm hover:shadow-md"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold tag-mono uppercase tracking-wider bg-ink text-paper dark:bg-void-ink dark:text-void shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-300"
                     title="Download full resolution screenshot"
                   >
                     <Download size={14} />

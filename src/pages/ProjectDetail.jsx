@@ -163,7 +163,7 @@ export default function ProjectDetail() {
 
       {/* Gallery */}
       <Section eyebrow="Gallery" title="Screenshots & Assets" className="!-mt-[44px] md:!-mt-[44px]">
-        <Gallery id={project.id} />
+        <Gallery id={project.id} titles={project.screenshotTitles} />
       </Section>
 
       {/* Previous & Next Project Navigation Footer Bar */}

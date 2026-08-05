@@ -26,10 +26,9 @@ export default function Footer() {
           </div>
           <a
             href={`mailto:${profile.email}`}
-            style={{ transform: "translateY(13px)" }}
-            className="inline-flex items-center gap-1.5 md:gap-2 px-4 py-2.5 text-xs md:px-6 md:py-3 md:text-base bg-ink text-paper dark:bg-void-ink dark:text-void font-medium hover:opacity-85 transition-opacity shrink-0 w-fit"
+            className="mt-[13px] inline-flex items-center gap-1.5 md:gap-2 px-3.5 py-2 text-[10.5px] sm:text-xs md:px-6 md:py-3 md:text-base bg-ink text-paper dark:bg-void-ink dark:text-void font-medium shrink-0 w-fit max-w-full break-all shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] transition-all duration-300"
           >
-            <Mail size={14} className="md:w-4 md:h-4" /> {profile.email}
+            <Mail size={14} className="shrink-0 md:w-4 md:h-4" /> {profile.email}
           </a>
         </div>
 

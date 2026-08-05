@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import PdfModal from "../components/PdfModal";
 import { researchPaper, certifications, education, quotes, profile } from "../data/content";
 import DetectionFrame from "../components/DetectionFrame";
 import AbstractField from "../components/AbstractField";
@@ -21,11 +23,13 @@ const careerPrinciples = [
   {
     step: "03",
     title: "Fresher Developer Roles",
-    detail: "Prepared to bring production-grade backend reliability and computer-vision expertise to software engineering teams in Pune or Mumbai.",
+    detail: "Prepared to bring production-grade backend reliability and computer-vision expertise to software engineering teams across India, open to relocation.",
   },
 ];
 
 export default function Achievements() {
+  const [pdfModal, setPdfModal] = useState(null);
+  const openPdf = (src, label, downloadName) => setPdfModal({ src, label, downloadName });
   const be = education.find((e) => e.id === "be");
 
   const academicStats = [
@@ -111,7 +115,7 @@ export default function Achievements() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="h-full"
+            className="h-full mt-[54px] md:mt-0"
           >
             <DetectionFrame tag="CLASS: PUBLICATION" always className="h-full">
               <div className="border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-8 md:p-11 h-full flex flex-col justify-between transition-all duration-300 hover:border-accent dark:hover:border-accent-dark shadow-sm hover:shadow-md">
@@ -131,22 +135,18 @@ export default function Achievements() {
                 </div>
 
                 <div className="mt-10 flex flex-wrap gap-3.5">
-                  <a
-                    href={researchPaper.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 px-5 py-3 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:opacity-90 transition-all duration-200 w-fit"
+                  <button
+                    onClick={() => openPdf(researchPaper.url, "JACIIE · Research Paper", "erecyclo-jaciie-2026.pdf")}
+                    className="inline-flex items-center justify-center gap-2.5 px-5 py-3 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-200 w-fit whitespace-nowrap"
                   >
                     View Research Paper <ExternalLink size={14} />
-                  </a>
-                  <a
-                    href="/docs/certificates/jaciie-paper-certificate.pdf"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 px-5 py-3 border border-line/80 dark:border-void-line/80 bg-paper/80 dark:bg-void-ink/10 text-ink dark:text-void-ink font-bold text-xs tag-mono tracking-wider uppercase shadow-sm hover:shadow-md hover:-translate-y-[1px] hover:border-accent dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-dark transition-all duration-200 w-fit"
+                  </button>
+                  <button
+                    onClick={() => openPdf("/docs/certificates/jaciie-paper-certificate.pdf", "JACIIE · Publication Certificate", "jaciie-paper-certificate.pdf")}
+                    className="inline-flex items-center justify-center gap-2.5 px-5 py-3 border border-line/80 dark:border-void-line/80 bg-paper/80 dark:bg-void-ink/10 text-ink dark:text-void-ink font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.05)] hover:-translate-y-[1px] hover:border-accent dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-dark transition-all duration-200 w-fit whitespace-nowrap"
                   >
                     View Publication Certificate <ExternalLink size={14} />
-                  </a>
+                  </button>
                 </div>
               </div>
             </DetectionFrame>
@@ -158,7 +158,7 @@ export default function Achievements() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="h-full mt-[32px] md:mt-0"
+            className="h-full mt-[94px] md:mt-0"
           >
             <DetectionFrame tag="CLASS: CERTIFICATIONS" always className="h-full">
               <div className="border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-8 md:p-11 h-full flex flex-col justify-between transition-all duration-300 hover:border-accent dark:hover:border-accent-dark shadow-sm hover:shadow-md">
@@ -175,14 +175,12 @@ export default function Achievements() {
                     <p className="text-xs md:text-sm font-medium text-ink-soft dark:text-void-soft mt-2">
                       {certifications[0].issuer} · {certifications[0].date}
                     </p>
-                    <a
-                      href={certifications[0].url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:opacity-90 transition-all duration-200 w-fit"
+                    <button
+                      onClick={() => openPdf(certifications[0].url, `${certifications[0].issuer} · Certificate`, `${certifications[0].id}-certificate.pdf`)}
+                      className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-200 w-fit"
                     >
                       View Certificate <ExternalLink size={13} />
-                    </a>
+                    </button>
                   </div>
 
                   {/* Cert 2 */}
@@ -193,14 +191,12 @@ export default function Achievements() {
                     <p className="text-xs md:text-sm font-medium text-ink-soft dark:text-void-soft mt-2">
                       {certifications[1].issuer} · {certifications[1].date}
                     </p>
-                    <a
-                      href={certifications[1].url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:opacity-90 transition-all duration-200 w-fit"
+                    <button
+                      onClick={() => openPdf(certifications[1].url, `${certifications[1].issuer} · Certificate`, `${certifications[1].id}-certificate.pdf`)}
+                      className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-200 w-fit"
                     >
                       View Certificate <ExternalLink size={13} />
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -214,7 +210,7 @@ export default function Achievements() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-[97px] md:mt-[113px]"
+          className="mt-[180px] md:mt-[113px]"
         >
           <DetectionFrame tag="CLASS: ACADEMIC" always>
             <div className="border border-line/70 dark:border-void-line/80 bg-paper dark:bg-void p-8 md:p-11 transition-all duration-300 hover:border-accent dark:hover:border-accent-dark shadow-sm hover:shadow-md">
@@ -235,14 +231,12 @@ export default function Achievements() {
                 <StatStrip stats={academicStats} border={false} />
               </div>
 
-              <a
-                href={be.marksheetUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-10 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:opacity-90 transition-all duration-200 w-fit"
+              <button
+                onClick={() => openPdf(be.marksheetUrl, "BE Degree · Marksheet", "be-marksheet.pdf")}
+                className="mt-10 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-ink text-paper dark:bg-void-ink dark:text-void font-bold text-xs tag-mono tracking-wider uppercase shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_42px_rgba(0,0,0,0.38)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.12)] hover:-translate-y-[1px] transition-all duration-200 w-fit"
               >
                 View Degree Marksheet <ExternalLink size={14} />
-              </a>
+              </button>
             </div>
           </DetectionFrame>
         </motion.div>
@@ -280,6 +274,14 @@ export default function Achievements() {
           ))}
         </div>
       </Section>
+
+      <PdfModal
+        open={!!pdfModal}
+        onClose={() => setPdfModal(null)}
+        src={pdfModal?.src || ""}
+        label={pdfModal?.label || ""}
+        downloadName={pdfModal?.downloadName || "document.pdf"}
+      />
     </>
   );
 }
