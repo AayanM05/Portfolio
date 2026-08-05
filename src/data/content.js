@@ -162,7 +162,7 @@ export const allProjectsCatalog = [
     ],
     outcome:
       "Successfully architected, debugged, and deployed on Railway. Findings were peer-reviewed and published in JACIIE (Journal of Advanced Computing, Intelligence Interdisciplinary Engineering, Paper ID SP-2026-015), including class-wise performance comparisons.",
-    repoUrl: "https://github.com/AayanM05",
+    repoUrl: "https://github.com/AayanM05/eRecyclo-E-waste-Recycling-and-Management-System",
     demoUrl: null,
     codeSnippet: {
       filename: "collectors/services/assignment.py",
@@ -301,7 +301,7 @@ class EnrollmentController {
     stack: ["Django", "Python", "MySQL", "HTML/CSS/JS", "Razorpay"],
     outcome:
       "Delivered as the core internship project, and used later as a reference point when setting up other Django projects.",
-    repoUrl: "https://github.com/AayanM05",
+    repoUrl: "https://github.com/AayanM05/SeizeDeals-Ecommerce-Platform",
     demoUrl: null,
     codeSnippet: {
       filename: "cart/models.py + views.py",
